@@ -1,0 +1,15 @@
+{% extends 'gestion/base.html' %}
+{% block content %}
+<h2>🏢 {{ departamento.nombre }}</h2>
+<p><strong>Ubicación:</strong> {{ departamento.ubicacion }}</p>
+<hr>
+<h4>Empleados en este departamento:</h4>
+<ul>
+    {% for emp in departamento.empleados.all %}
+        <li>{{ emp.nombre }} - {{ emp.cargo }}</li>
+    {% empty %}
+        <li>No hay empleados asignados.</li>
+    {% endfor %}
+</ul>
+<a href="{% url 'departamento_list' %}" class="btn btn-secondary">Volver</a>
+{% endblock %}

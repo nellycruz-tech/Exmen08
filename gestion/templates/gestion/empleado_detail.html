@@ -1,0 +1,26 @@
+{% extends 'gestion/base.html' %}
+{% block content %}
+<h2>👤 {{ empleado.nombre }}</h2>
+<div class="row">
+    <div class="col-md-4">
+        {% if empleado.foto %}
+            <img src="{{ empleado.foto.url }}" class="img-fluid rounded shadow" alt="Foto de {{ empleado.nombre }}">
+        {% else %}
+            <p>Sin foto disponible.</p>
+        {% endif %}
+    </div>
+    <div class="col-md-8">
+        <ul class="list-group">
+            <li class="list-group-item"><strong>Cargo:</strong> {{ empleado.cargo }}</li>
+            <li class="list-group-item"><strong>Salario:</strong> $ {{ empleado.salario }}</li>
+            <li class="list-group-item"><strong>Departamento:</strong> {{ empleado.departamento.nombre }}</li>
+            <li class="list-group-item"><strong>Ubicación Depto:</strong> {{ empleado.departamento.ubicacion }}</li>
+        </ul>
+        <div class="mt-3">
+            <a href="{% url 'empleado_update' empleado.pk %}" class="btn btn-warning">Editar</a>
+            <a href="{% url 'empleado_delete' empleado.pk %}" class="btn btn-danger">Eliminar</a>
+            <a href="{% url 'empleado_list' %}" class="btn btn-secondary">Volver</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

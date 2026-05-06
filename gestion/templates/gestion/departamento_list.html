@@ -1,0 +1,34 @@
+{% extends 'gestion/base.html' %}
+
+{% block content %}
+<h2 class="mb-3">📂 Departamentos</h2>
+
+<a href="{% url 'departamento_create' %}" class="btn btn-success mb-3">Nuevo Departamento</a>
+
+<table class="table table-striped table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Ubicación</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for depto in departamentos %}
+        <tr>
+            <td>{{ depto.id }}</td>
+            <td>{{ depto.nombre }}</td>
+            <td>{{ depto.ubicacion }}</td>
+            <td class="btn-actions">
+                <a href="{% url 'departamento_detail' depto.pk %}" class="btn btn-info btn-sm">Ver</a>
+                <a href="{% url 'departamento_update' depto.pk %}" class="btn btn-warning btn-sm">Editar</a>
+                <a href="{% url 'departamento_delete' depto.pk %}" class="btn btn-danger btn-sm">Eliminar</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="4">No hay departamentos registrados.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
